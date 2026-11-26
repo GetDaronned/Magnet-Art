@@ -14,10 +14,9 @@ export default function Home() {
   return (
     <Layout current="accueil">
       <div className="welcome-head">
-        <h1>Un aimant, ça se voit, ça se tord, et ça se souvient.</h1>
+        <h1>Et si on pouvait voir le magnétisme ?</h1>
         <p className="lead">
-          Attrape l’aimant : la limaille dessine son champ invisible. Ensuite, descends à l’échelle du nanomètre, là où ton disque dur range tes données.
-        </p>
+            Des haut-parleurs aux moteurs électriques, le magnétisme est partout dans notre quotidien. Commence par explorer ses manifestations à notre échelle et comprendre le fonctionnement de ses applications. Plonge ensuite au cœur de la matière, à l’échelle microscopique, pour découvrir comment les structures magnétiques se forment, s’organisent et ouvrent la voie à de nouvelles technologies.        </p>
       </div>
 
       <div className="hero-band">
