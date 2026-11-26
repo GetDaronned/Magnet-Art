@@ -1,0 +1,1 @@
+var e=(e,t)=>{try{let n=localStorage.getItem(e);return n===null?t:JSON.parse(n)}catch{return t}},t=(e,t)=>{try{localStorage.setItem(e,JSON.stringify(t))}catch{}},n=()=>e(`magnetart-disk-complete`,!1),r=()=>t(`magnetart-disk-complete`,!0),i=()=>e(`magnetart-disk-letter`,``),a=e=>t(`magnetart-disk-letter`,e);export{a as i,i as n,r,n as t};
