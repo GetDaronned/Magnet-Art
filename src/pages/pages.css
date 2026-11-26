@@ -510,3 +510,22 @@
 .project-footer h2 { margin: 0 0 8px; font-size: 1.15rem; color: var(--ink); }
 .project-footer p, .project-footer ul { max-width: 78ch; }
 .project-footer summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+
+.project-footer {
+  text-align: center;
+}
+
+.project-footer p,
+.project-footer ul {
+  margin-inline: auto;
+}
+
+.project-footer details {
+  max-width: 78ch;
+  margin: 20px auto 0;
+  text-align: left;
+}
+
+.project-footer summary {
+  text-align: center;
+}
