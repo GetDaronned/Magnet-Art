@@ -530,12 +530,11 @@
   text-align: center;
 }
 .welcome-head {
-  text-align: center;
+  max-width: 100%;
+  text-align: left;
 }
 
 .welcome-head .lead {
-  max-width: 75ch;
-  margin: 20px auto 0;
-  text-align: center;
-  line-height: 1.6;
-}
+  max-width: 100%;
+  text-align: left;
+}}
