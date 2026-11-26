@@ -1,0 +1,776 @@
+/* Découverte, ateliers et quiz, au style d'Aimantarium (css/parcours.css),
+   sans le vert du prototype : papier, encre et rouge comme le reste. */
+
+/* ---- bandeau de la Découverte ---- */
+
+.d-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 34%);
+  align-items: center;
+  gap: 32px;
+  margin: clamp(24px, 3vw, 40px) 0 0;
+  padding: clamp(28px, 4.6vw, 64px);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--card);
+}
+
+.d-hero-copy {
+  min-width: 0;
+}
+
+.d-label {
+  margin: 0 0 12px;
+  font-size: 0.77rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.d-hero .d-label {
+  color: var(--red);
+}
+
+.page .d-hero h1 {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 5.8vw, 5.3rem);
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: -0.06em;
+}
+
+.d-hero-copy > p:not(.d-label) {
+  max-width: 40ch;
+  margin: 24px 0 0;
+  color: var(--ink2);
+  font-size: clamp(1rem, 1.5vw, 1.17rem);
+}
+
+.page .d-hero .btn {
+  margin-top: 32px;
+}
+
+.d-field {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 218px;
+  place-items: center;
+  transform: rotate(-15deg);
+}
+
+.d-loop {
+  position: absolute;
+  width: 80%;
+  height: 42%;
+  border: 1.5px dashed rgba(23, 20, 15, 0.35);
+  border-radius: 50%;
+}
+
+.d-loop:nth-child(2) {
+  width: 95%;
+  height: 68%;
+}
+
+.d-loop:nth-child(3) {
+  width: 110%;
+  height: 94%;
+}
+
+.d-magnet {
+  z-index: 1;
+  display: flex;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.d-magnet b {
+  display: grid;
+  place-items: center;
+  width: clamp(28px, 6vw, 79px);
+  aspect-ratio: 1.5;
+  font-size: clamp(0.85rem, 2.3vw, 2rem);
+  background: var(--red);
+}
+
+.d-magnet b + b {
+  background: var(--blue);
+}
+
+/* ---- cartes des chapitres ---- */
+
+.page h2.d-section {
+  margin: 64px 0 20px;
+  font: 800 clamp(1.3rem, 2.5vw, 1.7rem) / 1.13 var(--fd);
+  letter-spacing: -0.035em;
+}
+
+.d-missions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Même animation que les cartes de l'accueil. */
+.page .d-mission {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 24px;
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.page .d-mission:hover,
+.page .d-mission:focus-visible {
+  color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 var(--ink);
+}
+
+.d-mission-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: var(--paper2);
+  color: var(--ink);
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.d-mission-copy h3 {
+  margin: 4px 0 8px;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.d-mission-copy p {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--ink2);
+}
+
+.d-mission-arrow {
+  align-self: center;
+  color: var(--red);
+  font-size: 1.2rem;
+  font-weight: 850;
+}
+
+/* Carnet des notions : le titre repliable a le style des titres de section. */
+.d-notebook {
+  margin-top: 64px;
+}
+
+.d-notebook summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font: 800 clamp(1.3rem, 2.5vw, 1.7rem) / 1.13 var(--fd);
+  letter-spacing: -0.035em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.d-notebook summary::-webkit-details-marker {
+  display: none;
+}
+
+.d-notebook summary::before {
+  content: '▸';
+  color: var(--red);
+  font-size: 0.8em;
+  transition: transform 0.15s;
+}
+
+.d-notebook[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Compteur de notions rencontrées, comme « 3 / 7 » dans la V19. */
+.d-notebook-count {
+  font-size: 0.6em;
+  font-weight: 750;
+  letter-spacing: 0;
+  color: var(--red);
+}
+
+.d-notebook .carnet {
+  margin-top: 20px;
+  padding: 24px;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.carnet > p {
+  margin: 0 0 16px;
+  color: var(--ink2);
+}
+
+.carnet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Cartes du carnet (V19) : en pointillés tant que la notion n'a pas été
+   rencontrée, pleines ensuite. */
+.carnet-card {
+  border: 1.5px dashed var(--rule);
+  border-radius: 9px;
+  padding: 12px 14px;
+  color: var(--ink3);
+  background: #fffefb;
+}
+
+.carnet-card b {
+  display: block;
+  font: 850 1.5rem/1 var(--fd);
+  margin-bottom: 6px;
+}
+
+.carnet-card strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.carnet-card p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.carnet-card.on {
+  border-style: solid;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.carnet-card.on b {
+  color: var(--red);
+}
+
+.carnet-card.on p {
+  color: var(--ink2);
+}
+
+/* ---- ateliers et quiz ---- */
+
+.page .d-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--ink2);
+}
+
+.page h1.d-title {
+  max-width: none;
+  margin: 0;
+  font: 850 clamp(1.6rem, 4.05vw, 3.45rem) / 1.06 var(--fd);
+  letter-spacing: -0.05em;
+}
+
+.d-intro {
+  max-width: 70ch;
+  margin: 8px 0 0;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+.d-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink2);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.d-progress {
+  display: block;
+  width: 100%;
+  height: 7px;
+  margin: 8px 0 16px;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  accent-color: var(--red);
+  background: var(--rule);
+}
+
+.d-progress::-webkit-progress-bar {
+  background: var(--rule);
+}
+
+.d-progress::-webkit-progress-value {
+  background: var(--red);
+  border-radius: 10px;
+}
+
+.d-progress::-moz-progress-bar {
+  background: var(--red);
+  border-radius: 10px;
+}
+
+.d-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 42%);
+  gap: 24px 32px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.d-main {
+  position: sticky;
+  top: 100px;
+  min-width: 0;
+}
+
+.d-stage {
+  position: relative;
+  height: clamp(250px, 52vh, 530px);
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.d-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+}
+
+.d-canvas.interactive {
+  touch-action: none;
+  cursor: grab;
+}
+
+.d-canvas.interactive:active {
+  cursor: grabbing;
+}
+
+.d-toast {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.88rem;
+}
+
+.d-legend {
+  display: flex;
+  gap: 5px 12px;
+  flex-wrap: wrap;
+  margin: 12px 3px 0;
+  font-size: 0.88rem;
+}
+
+.d-legend b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.55em;
+  margin-right: 2px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.d-legend b.up {
+  background: #aa2c22;
+}
+
+.d-legend b.down {
+  background: #1f4e9c;
+}
+
+.d-legend b.flat {
+  color: var(--ink);
+  background: #fffdf7;
+  border: 1px solid var(--rule);
+}
+
+.d-caption {
+  color: var(--ink2);
+  margin: 8px 3px 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.d-measure {
+  margin: 12px 3px 0;
+  padding: 8px 12px;
+  background: var(--paper2);
+  border-left: 4px solid var(--red);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.d-main > .btn {
+  margin-top: 16px;
+}
+
+.d-panel {
+  min-width: 0;
+  padding: clamp(16px, 2.25vw, 28px);
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+}
+
+.page .d-panel h2,
+.page .d-panel h3 {
+  font: 820 clamp(1.35rem, 2.4vw, 1.8rem) / 1.13 var(--fd);
+  letter-spacing: -0.035em;
+  margin: 0 0 16px;
+}
+
+/* réglages de l'atelier */
+
+.d-controls {
+  display: grid;
+  gap: 12px;
+}
+
+.d-control {
+  padding: 10px 14px 12px;
+  border-radius: 9px;
+  background: var(--paper2);
+}
+
+.d-control-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 3px 8px;
+}
+
+.d-control label {
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.d-control output {
+  color: var(--red);
+  font-size: 0.9rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.d-control input[type='range'] {
+  display: block;
+  width: 100%;
+  min-height: 41px;
+  margin: 0;
+}
+
+.d-control input[type='checkbox'] {
+  width: 21px;
+  height: 21px;
+  accent-color: var(--red);
+}
+
+.d-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.d-control select {
+  min-height: 44px;
+  margin-top: 6px;
+  width: 100%;
+  font: inherit;
+  padding-inline: 6px;
+}
+
+.d-hint {
+  font-size: 0.86rem;
+  color: var(--ink2);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.d-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 16px;
+}
+
+/* quiz */
+
+.d-options {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.page .d-option {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 13px;
+  text-align: left;
+  color: var(--ink);
+  background: #fffefb;
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  font: 650 0.94rem/1.25 var(--f);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.page .d-option:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: #f6efe5;
+}
+
+.page .d-option.picked {
+  background: #f6e7cf;
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.page .d-option.correct {
+  background: #e3efdf;
+  border-color: var(--leaf);
+  box-shadow: inset 0 0 0 1px var(--leaf);
+}
+
+.page .d-option:disabled {
+  cursor: default;
+}
+
+.d-fb {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  background: #fbefe6;
+  border-left: 4px solid var(--gold);
+}
+
+.d-explain {
+  padding: 13px;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  background: #fbf3e6;
+  margin-top: 16px;
+}
+
+.page .d-explain h3 {
+  margin: 0 0 6px;
+  font-size: 1.13rem;
+}
+
+.d-explain p {
+  font-size: 0.89rem;
+  line-height: 1.48;
+  margin: 9px 0;
+}
+
+.d-explain details {
+  margin-top: 10px;
+  font-size: 0.83rem;
+}
+
+.d-explain summary {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.d-sources a {
+  color: var(--blue);
+}
+
+.d-summary {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.d-summary li {
+  margin-bottom: 8px;
+}
+
+.d-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 14px;
+}
+
+.d-foot .btn {
+  min-height: 44px;
+}
+
+.d-foot.small {
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-top: 10px;
+}
+
+/* Bouton du tiroir de réglages : seulement sur téléphone. */
+.d-drawer-toggle {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .carnet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .d-missions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .d-lab {
+    grid-template-columns: 1fr;
+  }
+
+  .d-main {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .d-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .d-field {
+    display: none;
+  }
+
+  .d-missions {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .page h2.d-section {
+    margin-top: 48px;
+  }
+
+  .d-notebook {
+    margin-top: 48px;
+  }
+
+  .d-notebook .carnet {
+    padding: 16px;
+  }
+
+  /* Atelier sur téléphone (comme le prototype V19) : les réglages sont dans
+     un tiroir en bas de l'écran, la simulation reste visible au-dessus. */
+  .d-explore {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .d-explore .d-stage {
+    height: clamp(245px, 54dvh, 560px);
+  }
+
+  .d-explore.drawer-open .d-stage {
+    height: clamp(130px, calc(100dvh - min(43dvh, 420px) - 174px), 420px);
+  }
+
+  .d-explore .d-panel {
+    position: fixed;
+    z-index: 40;
+    inset: auto 0 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
+    border-width: 1.5px 0 0;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -5px 20px rgba(23, 20, 15, 0.15);
+  }
+
+  .page .d-drawer-toggle {
+    display: flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    color: var(--paper);
+    background: var(--ink);
+    border: 0;
+    border-radius: 14px 14px 0 0;
+    font: 800 1rem var(--f);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .d-drawer-arrow {
+    font-size: 1.55rem;
+    color: var(--gold);
+  }
+
+  .d-drawer-toggle[aria-expanded='true'] .d-drawer-arrow {
+    transform: rotate(180deg);
+  }
+
+  .d-explore .d-drawer-body {
+    display: none;
+    padding: 12px 16px 16px;
+    max-height: calc(min(43dvh, 420px) - 52px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+
+  .d-explore.drawer-open .d-drawer-body {
+    display: block;
+  }
+}
+
+/* Gros symbole de flèche à côté des unités (↑, ↓). */
+.d-arrow {
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 1.45em;
+  line-height: 0.8;
+  vertical-align: -0.08em;
+}

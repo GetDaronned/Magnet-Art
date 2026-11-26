@@ -1,0 +1,512 @@
+/* Pages de contenu, au style d'Aimantarium (css/style.css et
+   css/parcours.css du prototype) : polices système, titres très gras,
+   papier de cahier à petits carreaux, encre et rouge. Tout est confiné à
+   .page pour ne pas toucher au bac à sable.
+
+   Espacements sur une échelle de 8 px : 8, 16, 24, 32, 48, 64… Le texte
+   courant reste sous ~70 caractères par ligne. */
+
+.page {
+  --paper: #f6ecda;
+  --paper2: #ede2cc;
+  --card: #fffaf0;
+  --ink: #17140f;
+  --ink2: #4a443a;
+  --ink3: #8a8275;
+  --rule: #d9cbb2;
+  --gutter: clamp(20px, 3.5vw, 56px);
+  --red: #d7301f;
+  --blue: #1f4e9c;
+  --gold: #c98a00;
+  --leaf: #2f7d4f;
+  /* Panneaux sombres (pistes du disque, haut-parleur) : encre chaude. */
+  --lab-dark: #2a241c;
+  --lab-deep: #17140f;
+  --lab-cell: #1d1914;
+  --lab-accent: #f2c14e;
+  --lab-light: #f1e6d2;
+  --lab-muted: #d4c6ae;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --f: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --fd: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  color-scheme: light;
+  font: 16px/1.55 var(--f);
+  color: var(--ink);
+  background-color: var(--paper);
+  /* Cahier de TP : petits carreaux réguliers, sans grand quadrillage. */
+  background-image:
+    linear-gradient(rgba(140, 104, 58, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 104, 58, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  background-attachment: local;
+}
+
+.page a {
+  color: inherit;
+}
+
+.page a:hover {
+  color: var(--red);
+}
+
+.page :focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.page b,
+.page strong {
+  font-weight: 700;
+}
+
+/* ---- en-tête ---- */
+
+.page-top {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  min-height: 76px;
+  padding: 14px var(--gutter);
+  background: rgba(246, 236, 218, 0.95);
+  border-bottom: 2px solid var(--ink);
+}
+
+.page .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.page .brand:hover {
+  color: var(--ink);
+}
+
+.page .logo {
+  width: 44px;
+  height: 44px;
+}
+
+.brand-t {
+  font: 850 1.65rem/1 var(--fd);
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+}
+
+.page .nav {
+  display: flex;
+  gap: 6px;
+  margin-left: 16px;
+}
+
+.page .nav a {
+  text-decoration: none;
+  padding: 11px 16px;
+  border-radius: 4px;
+  font: 700 1.02rem/1 var(--f);
+  border: 2px solid transparent;
+}
+
+.page .nav a:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.page .nav a.on {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.page-main {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 80px;
+  animation: rise 0.35s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- textes ---- */
+
+.kicker {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: 0.13em;
+}
+
+.page h1 {
+  font: 850 clamp(2.1rem, 5.6vw, 4.4rem) / 1.04 var(--fd);
+  letter-spacing: -0.05em;
+  margin: 12px 0 16px;
+  max-width: 900px;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  color: var(--ink2);
+  max-width: 700px;
+  margin: 0;
+}
+
+/* ---- curseurs (rail encre, bouton rouge, comme le prototype) ---- */
+
+.page input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  margin: 2px 0 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.page input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.page input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2.5px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--card);
+}
+
+.page input[type='range']::-moz-range-track {
+  height: 4px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.page input[type='range']::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2.5px solid var(--ink);
+}
+
+.page input[type='checkbox'] {
+  accent-color: var(--red);
+}
+
+/* ---- boutons ---- */
+
+.page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 14px;
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 var(--ink);
+  font: 700 0.9rem/1.2 var(--f);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease;
+}
+
+.page .btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--ink);
+}
+
+.page .btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.page .btn.primary {
+  background: var(--red);
+  color: #fff;
+}
+
+.page .btn.primary:hover {
+  color: #fff;
+}
+
+.page .btn.big {
+  padding: 13px 20px;
+  font-size: 1rem;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.page .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--ink2);
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 8px 3px;
+}
+
+/* ---- accueil ---- */
+
+.welcome-head {
+  padding: 48px 0 32px;
+}
+
+.doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin: 48px 0 0;
+}
+
+.page .door {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.page .door:hover,
+.page .door:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 var(--ink);
+  color: var(--ink);
+}
+
+.door-n {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-weight: 850;
+}
+
+.door h2 {
+  font: 800 1.35rem/1.15 var(--fd);
+  letter-spacing: -0.03em;
+  margin: 4px 0 0;
+}
+
+.door p {
+  margin: 0;
+  color: var(--ink2);
+  font-size: 0.94rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.door strong {
+  color: var(--red);
+  font-size: 0.92rem;
+}
+
+/* ---- aimant de l'accueil ---- */
+
+.hero-band {
+  position: relative;
+}
+
+/* Ombre seulement au survol, comme les cartes en dessous. */
+.hero-canvas {
+  height: clamp(360px, 54vh, 600px);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.hero-canvas:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 var(--ink);
+}
+
+/* pan-y : sur téléphone, on peut encore faire défiler la page. */
+.hero-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.hero-canvas canvas:active {
+  cursor: grabbing;
+}
+
+.fig-cap {
+  margin: 12px 0 0;
+  font-size: 0.84rem;
+  color: var(--ink2);
+}
+
+/* ---- le savais-tu ? (bonus, détaché du reste) ---- */
+
+.did {
+  max-width: 760px;
+  margin: 160px auto 0;
+  text-align: center;
+}
+
+.did-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--red);
+  font: 850 2.6rem/1 var(--fd);
+}
+
+.page .did h2 {
+  margin: 16px 0 24px;
+  font: 850 clamp(1.4rem, 2.6vw, 1.9rem) / 1.1 var(--fd);
+  letter-spacing: 0.06em;
+}
+
+.did-fact {
+  min-height: 4.8em;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--ink2);
+  text-wrap: pretty;
+}
+
+.did-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.did-count {
+  min-width: 4.5em;
+  font: 700 0.9rem var(--mono);
+  color: var(--ink3);
+}
+
+.page .did-nav .btn {
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 760px) {
+  .page-top {
+    gap: 8px 12px;
+    padding: 8px 16px;
+  }
+
+  .brand-t {
+    font-size: 1.15rem;
+  }
+
+  .page-top {
+    min-height: 0;
+  }
+
+  .page .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .page .nav {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    gap: 2px;
+  }
+
+  .page .nav a {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 7px;
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .page {
+    --gutter: 16px;
+  }
+
+  .welcome-head {
+    padding: 32px 0 24px;
+  }
+
+  .hero-canvas {
+    height: 360px;
+  }
+
+  .doors {
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .did {
+    margin-top: 96px;
+  }
+}
+
+/* Crédits et explication du moteur, en bas de l’accueil. */
+.project-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--ink2);
+}
+.project-footer h2 { margin: 0 0 8px; font-size: 1.15rem; color: var(--ink); }
+.project-footer p, .project-footer ul { max-width: 78ch; }
+.project-footer summary { cursor: pointer; font-weight: 700; color: var(--ink); }
